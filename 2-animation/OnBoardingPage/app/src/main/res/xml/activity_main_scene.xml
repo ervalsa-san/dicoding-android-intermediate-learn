@@ -128,4 +128,7 @@
         motion:constraintSetEnd="@+id/menu2" >
         <OnSwipe motion:dragDirection="dragLeft" />
     </Transition>
+    <ConstraintSet
+        android:id="@+id/menu3"
+        motion:deriveConstraintsFrom="@+id/end" />
 </MotionScene>

@@ -1,0 +1,140 @@
+[33mcommit afad2cf77f1309a00607aea0a040dc9b4b8dbfa0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Thu Sep 22 09:25:11 2022 +0800
+
+    Add motion layout to onboarding
+
+[33mcommit 083426f630c7125372e8debadddf0291d513501a[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 19:58:00 2022 +0800
+
+    Init OnboardingPage Project
+
+[33mcommit fe91acd0d21a75be78e1cb94ac614935e7aeae5a[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 19:53:29 2022 +0800
+
+    Add Activity Transition in Adapter
+
+[33mcommit e9c2f1a521251f6b3a1ddb0f63f5894cab523d24[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 19:09:02 2022 +0800
+
+    Init ActivityTransition Project
+
+[33mcommit 4f6522aea2730a7a69246c5518c8bad523e11438[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 19:03:02 2022 +0800
+
+    Add animation in All Activity
+
+[33mcommit ad08688a70175905d8dc53c4e03950222907e299[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 18:04:47 2022 +0800
+
+    Init Propery Animation Project
+
+[33mcommit 0e097408f3aa51ae16f93468925e5d026d1ec59e[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 14:19:38 2022 +0800
+
+    Add Webview App
+
+[33mcommit 6e7bc17c3a28955dafd97a27ca1c3985cac81c04[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 13:56:38 2022 +0800
+
+    Add MyStackWidget Project
+
+[33mcommit 9dc83e4ea84fa6c121a0645c61ad9ce430f2cf6a[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 12:20:13 2022 +0800
+
+    Finish Random Number Widget
+
+[33mcommit d78910e7cc45d8ab3f8529601740db12f33c881a[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 11:43:41 2022 +0800
+
+    Init project widgets
+
+[33mcommit 501afe108ef2b1474fb3f100bd57d6ed6e6472b4[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 11:39:04 2022 +0800
+
+    Add skin
+
+[33mcommit e160fccf6303d90ed5bc85b040cc9c901069be50[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 11:27:24 2022 +0800
+
+    finish likes app
+
+[33mcommit bb6735cb5cd31e41b357f7dfde66956ecb6b320f[m
+Merge: a6f9542 731b94e
+Author: Ervalsa Dwi Nanda <34961795+ervalsa-san@users.noreply.github.com>
+Date:   Tue Sep 20 10:22:18 2022 +0800
+
+    Merge pull request #3 from ervalsa-san/advance-ui/draw-canvas
+    
+    add new project likesapp
+
+[33mcommit 731b94efb1439a925bb9132a2b29b54abc2c9179[m[33m ([m[1;31morigin/advance-ui/draw-canvas[m[33m, [m[1;32madvance-ui/draw-canvas[m[33m)[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 20 10:21:36 2022 +0800
+
+    add new project likesapp
+
+[33mcommit a6f9542caf56bc186ed2ef0e34707c5d2ba2d0e3[m
+Merge: 32980b0 8d69d12
+Author: Ervalsa Dwi Nanda <34961795+ervalsa-san@users.noreply.github.com>
+Date:   Tue Sep 20 10:21:07 2022 +0800
+
+    Merge pull request #2 from ervalsa-san/advance-ui/ticketing-apps
+    
+    Add Advance UI/ticketing apps
+
+[33mcommit 32980b02461d189b8808591ac8cd31c2da77add2[m
+Merge: 512f456 20f8a6a
+Author: Ervalsa Dwi Nanda <34961795+ervalsa-san@users.noreply.github.com>
+Date:   Tue Sep 20 10:20:19 2022 +0800
+
+    Merge pull request #1 from ervalsa-san/advance-ui/mycustomview
+    
+    Add Advance UI/mycustomview
+
+[33mcommit 8d69d12208699aaf1bd10e199bd135f564c0c1ac[m[33m ([m[1;31morigin/advance-ui/ticketing-apps[m[33m, [m[1;32madvance-ui/ticketing-apps[m[33m)[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Tue Sep 13 11:09:42 2022 +0800
+
+    Add Logic to MainActivity
+
+[33mcommit e556e13c291bfa376ee6c479758b4530ed8d5d03[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Thu Sep 8 19:36:21 2022 +0800
+
+    Init Ticketing Apps Project
+
+[33mcommit 20f8a6a271e028230e8ed874266f887c8af1878f[m[33m ([m[1;31morigin/advance-ui/mycustomview[m[33m, [m[1;32madvance-ui/mycustomview[m[33m)[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Thu Sep 8 15:11:07 2022 +0800
+
+    Add Custom EditText
+
+[33mcommit 042beea49f5b57610a62c26387482d41a0f79080[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Thu Sep 8 14:40:41 2022 +0800
+
+    Add Custom Button
+
+[33mcommit 512f4565e0d5f4a6f8a58f62a547eccb4145d69f[m
+Author: ervalsa <ervalsa-san@gmail.com>
+Date:   Thu Sep 8 13:14:19 2022 +0800
+
+    Init MyCustomView Project
+
+[33mcommit 5b92a3c2e91a61a911b7ca931a4825be1413ce5f[m
+Author: Ervalsa Dwi Nanda <34961795+ervalsa-san@users.noreply.github.com>
+Date:   Thu Sep 8 13:09:05 2022 +0800
+
+    Initial commit
