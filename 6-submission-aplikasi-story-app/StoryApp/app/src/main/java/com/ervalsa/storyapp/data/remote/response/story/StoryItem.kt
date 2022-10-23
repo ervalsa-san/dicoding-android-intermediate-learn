@@ -1,8 +1,11 @@
 package com.ervalsa.storyapp.data.remote.response.story
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-data class ListStoryItem (
+@Parcelize
+data class StoryItem (
 
     @field:SerializedName("id")
     val id: String,
@@ -24,4 +27,4 @@ data class ListStoryItem (
 
     @field:SerializedName("lon")
     val lon: Float
-)
+) : Parcelable

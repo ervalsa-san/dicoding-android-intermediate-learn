@@ -16,7 +16,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private var INSTANCE: UserPreference? = null
 
         private val NAME_KEY = stringPreferencesKey("name")
-        private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val LOGIN_STATE_KEY = booleanPreferencesKey("login_state")
 
@@ -33,7 +32,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         return dataStore.data.map { preferences ->
             UserEntity(
                 preferences[NAME_KEY] ?:"",
-                preferences[EMAIL_KEY] ?:"",
+                preferences[TOKEN_KEY] ?:"",
                 preferences[LOGIN_STATE_KEY] ?: false
             )
         }
