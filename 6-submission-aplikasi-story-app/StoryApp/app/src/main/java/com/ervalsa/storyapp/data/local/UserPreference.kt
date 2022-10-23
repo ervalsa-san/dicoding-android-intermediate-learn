@@ -5,7 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.ervalsa.storyapp.data.model.User
+import com.ervalsa.storyapp.data.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -17,7 +17,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
         private val NAME_KEY = stringPreferencesKey("name")
         private val EMAIL_KEY = stringPreferencesKey("email")
-        private val PASSWORD_KEY = stringPreferencesKey("password")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val LOGIN_STATE_KEY = booleanPreferencesKey("login_state")
 
@@ -30,28 +29,20 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    fun getUser(): Flow<User> {
+    fun getUser(): Flow<UserEntity> {
         return dataStore.data.map { preferences ->
-            User(
+            UserEntity(
                 preferences[NAME_KEY] ?:"",
                 preferences[EMAIL_KEY] ?:"",
-                preferences[PASSWORD_KEY] ?:"",
                 preferences[LOGIN_STATE_KEY] ?: false
             )
         }
     }
 
-    fun getAuthToken(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY] ?: ""
-        }
-    }
-
-    suspend fun saveUser(user: User) {
+    suspend fun saveUser(user: UserEntity) {
         dataStore.edit { preferences ->
             preferences[NAME_KEY] = user.name
-            preferences[EMAIL_KEY] = user.email
-            preferences[PASSWORD_KEY] = user.password
+            preferences[TOKEN_KEY] = user.token
             preferences[LOGIN_STATE_KEY] = user.isLogin
         }
     }
@@ -65,6 +56,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences[LOGIN_STATE_KEY] = false
+            preferences.remove(LOGIN_STATE_KEY)
         }
     }
 }
