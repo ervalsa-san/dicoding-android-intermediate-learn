@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.ervalsa.storyapp.data.remote.response.story.StoryItem
 import com.ervalsa.storyapp.databinding.ItemStoryBinding
 
@@ -13,20 +15,18 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
     private var itemClickCallback: OnItemClickCallback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val ListStoryBinding = ItemStoryBinding.inflate(
+        val listStoryBinding = ItemStoryBinding.inflate(
             LayoutInflater
                 .from(parent.context), parent, false)
-        return ListViewHolder(ListStoryBinding)
+        return ListViewHolder(listStoryBinding)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val stories = getItem(position)
-        holder.bind(stories)
+        if (stories != null) {
+            holder.bind(stories)
+        }
     }
-
-//    override fun getItemCount(): Int {
-//        TODO("Not yet implemented")
-//    }
 
     class ListViewHolder(
         private val binding: ItemStoryBinding
@@ -35,6 +35,10 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
         fun bind(story: StoryItem) {
             binding.tvName.text = story.name
             binding.tvDescription.text = story.description
+            Glide.with(itemView.context)
+                .load(story.photoUrl)
+                .apply(RequestOptions())
+                .into(binding.imgPhotoStory)
 
             itemView.setOnClickListener {
 
