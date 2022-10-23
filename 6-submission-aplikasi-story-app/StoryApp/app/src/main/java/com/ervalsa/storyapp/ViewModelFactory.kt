@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.ervalsa.storyapp.data.local.UserPreference
 import com.ervalsa.storyapp.ui.login.LoginViewModel
 import com.ervalsa.storyapp.ui.main.MainViewModel
-import com.ervalsa.storyapp.ui.register.RegisterViewModel
 
 class ViewModelFactory (
     private val preference: UserPreference

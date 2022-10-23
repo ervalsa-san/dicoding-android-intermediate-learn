@@ -32,7 +32,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +39,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupViewModel()
 
         binding.btnRegister.setOnClickListener {
             setupRegister()
@@ -50,14 +48,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun setupViewModel() {
-        registerViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(
-                UserPreference
-                    .getInstance(dataStore)))[RegisterViewModel::class.java]
     }
 
     private fun setupRegister() {
@@ -106,13 +96,6 @@ class RegisterActivity : AppCompatActivity() {
                 val responseBody = response.body()
                 if (response.isSuccessful && responseBody != null) {
                     showLoading(false)
-                    registerViewModel.saveUser(
-                        UserEntity(
-                            name,
-                            email,
-                            true
-                        )
-                    )
                     AlertDialog.Builder(this@RegisterActivity).apply {
                         setTitle("Selamat!")
                         setMessage("Akun anda sudah jadi, mari login dan buat cerita menarik.")
