@@ -8,6 +8,12 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val preferences: UserPreference) : ViewModel() {
 
+    fun login() {
+        viewModelScope.launch {
+            preferences.login()
+        }
+    }
+
     fun saveUser(user: UserEntity) {
         viewModelScope.launch {
             preferences.saveUser(user)

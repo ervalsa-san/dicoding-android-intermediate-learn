@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             else -> {
+                loginViewModel.login()
                 loginAuthentication()
             }
         }
