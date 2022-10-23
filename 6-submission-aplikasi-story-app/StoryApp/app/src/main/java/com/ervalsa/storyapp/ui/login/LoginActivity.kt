@@ -57,9 +57,7 @@ class LoginActivity : AppCompatActivity() {
             password.isEmpty() -> {
                 binding.edtInputPassword.error = "Password tidak boleh kosong"
             }
-
             else -> {
-                loginViewModel.login()
                 loginAuthentication()
             }
         }
@@ -88,10 +86,9 @@ class LoginActivity : AppCompatActivity() {
                     )
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     finish()
-
-                    Log.e(TAG, responseBody.loginResult.token)
                 } else {
                     showLoading(false)
                     Toast.makeText(

@@ -1,6 +1,7 @@
 package com.ervalsa.storyapp.ui.main
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.datastore.core.DataStore
@@ -11,8 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.ervalsa.storyapp.ViewModelFactory
 import com.ervalsa.storyapp.data.local.UserPreference
 import com.ervalsa.storyapp.databinding.ActivityMainBinding
+import com.ervalsa.storyapp.ui.login.LoginActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -25,17 +28,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewModel()
-        loginCheck()
 
         binding.btnLogout.setOnClickListener {
             mainviewModel.logout()
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
+
     }
 
-    private fun loginCheck() {
+    private fun setData() {
         mainviewModel.getUser().observe(this) { user->
             if (user.isLogin) {
-                binding.tvTitle.text = "Selamat datang, ${user.name}"
+                binding.tvTitle.text = "Selamat datang, ${user.name}\n"
             }
         }
     }
@@ -45,5 +52,7 @@ class MainActivity : AppCompatActivity() {
             this,
             ViewModelFactory(
                 UserPreference.getInstance(dataStore)))[MainViewModel::class.java]
+
+        setData()
     }
 }
