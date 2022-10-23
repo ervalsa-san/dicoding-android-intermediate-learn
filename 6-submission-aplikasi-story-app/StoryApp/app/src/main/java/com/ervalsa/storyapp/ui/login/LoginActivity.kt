@@ -18,6 +18,7 @@ import com.ervalsa.storyapp.data.local.UserPreference
 import com.ervalsa.storyapp.data.remote.response.auth.LoginResponse
 import com.ervalsa.storyapp.data.remote.retrofit.ApiConfig
 import com.ervalsa.storyapp.databinding.ActivityLoginBinding
+import com.ervalsa.storyapp.ui.register.RegisterActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             setupLogin()
+        }
+
+        binding.btnRegister.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 

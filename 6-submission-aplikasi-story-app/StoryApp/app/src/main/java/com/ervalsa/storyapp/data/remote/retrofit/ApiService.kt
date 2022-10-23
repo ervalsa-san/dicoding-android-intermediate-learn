@@ -16,14 +16,14 @@ interface ApiService {
     ) : Call<LoginResponse>
 
     @FormUrlEncoded
-    @POST("/register")
+    @POST("register")
     fun postRegister(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
     ) : Call<RegisterResponse>
 
-    @GET("/stories")
+    @GET("stories")
     fun getAllStory(
         @Header("Authorization") token: String,
     ) : Call<StoryResponse>

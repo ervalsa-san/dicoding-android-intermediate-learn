@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun setData() {
         mainviewModel.getUser().observe(this) { user->
             if (user.isLogin) {
-                binding.tvTitle.text = "Selamat datang, ${user.name}\n"
+                binding.tvTitle.text = "Selamat datang,\n${user.name}"
             }
         }
     }

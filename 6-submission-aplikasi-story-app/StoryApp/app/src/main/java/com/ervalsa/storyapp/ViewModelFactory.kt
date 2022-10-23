@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ervalsa.storyapp.data.local.UserPreference
 import com.ervalsa.storyapp.ui.login.LoginViewModel
 import com.ervalsa.storyapp.ui.main.MainViewModel
+import com.ervalsa.storyapp.ui.register.RegisterViewModel
 
 class ViewModelFactory (
     private val preference: UserPreference
@@ -18,6 +19,9 @@ class ViewModelFactory (
             }
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(preference) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(preference) as T
             }
             else -> throw IllegalArgumentException("Unkown ViewModel class: " + modelClass.name)
         }
