@@ -26,4 +26,6 @@ class MainViewModel(private val preference: UserPreference) : ViewModel() {
             preference.logout()
         }
     }
+
+    fun getAllStories() : LiveData<List<StoryItem>> = listStory
 }

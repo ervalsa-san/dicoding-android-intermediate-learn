@@ -23,9 +23,7 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val stories = getItem(position)
-        if (stories != null) {
-            holder.bind(stories)
-        }
+        holder.bind(stories)
     }
 
     class ListViewHolder(

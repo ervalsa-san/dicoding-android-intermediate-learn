@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewModel()
+        adapter = ListStoryAdapter()
+
 
         binding.btnLogout.setOnClickListener {
             mainViewModel.logout()
@@ -50,14 +52,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setListStory(token: String) {
+    fun setListStory(token: String, page: Int? = null, size: Int? = null) {
         showLoading(true)
-        val client = ApiConfig.getApiService().getAllStory(token)
+        val client = ApiConfig.getApiService().getAllStory(token, page, size)
         client.enqueue(object : Callback<StoryResponse> {
             override fun onResponse(call: Call<StoryResponse>, response: Response<StoryResponse>) {
-                showLoading(false)
-                if (response.isSuccessful) {
-                    mainViewModel.listStory.postValue(response.body()?.listStory)
+                val responseBody = response.body()
+                if (response.isSuccessful && responseBody != null) {
+                    showLoading(false)
+                    mainViewModel.listStory.postValue(responseBody.listStory)
                 } else {
                     Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
                 }
@@ -67,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                 showLoading(false)
                 Log.e(ContentValues.TAG, "onFailure : ${t.message}")
             }
-
         })
     }
 
@@ -76,12 +78,13 @@ class MainActivity : AppCompatActivity() {
             if (user.isLogin) {
                 binding.tvTitle.text = "Selamat datang,\n${user.name}"
                 val token = "Bearer ${user.token}"
+                val storyAdapter = adapter
                 Log.e(TAG, user.token)
-                val storyAdapter = ListStoryAdapter()
-                binding.apply {
-                    rvListStory.layoutManager = LinearLayoutManager(this@MainActivity)
-                    rvListStory.adapter = storyAdapter
-                    setListStory(token)
+                with(binding.rvListStory) {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    setHasFixedSize(true)
+                    adapter = storyAdapter
+                    setListStory(token, null, null)
                 }
             }
         }
