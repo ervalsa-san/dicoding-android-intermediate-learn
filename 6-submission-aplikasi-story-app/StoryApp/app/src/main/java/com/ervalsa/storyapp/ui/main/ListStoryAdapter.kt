@@ -12,8 +12,6 @@ import com.ervalsa.storyapp.databinding.ItemStoryBinding
 
 class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    private var itemClickCallback: OnItemClickCallback? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val listStoryBinding = ItemStoryBinding.inflate(
             LayoutInflater
@@ -26,10 +24,7 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
         holder.bind(stories)
     }
 
-    class ListViewHolder(
-        private val binding: ItemStoryBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
+    class ListViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryItem) {
             binding.tvName.text = story.name
             binding.tvDescription.text = story.description
@@ -44,27 +39,15 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
         }
     }
 
-    fun setOnItemClickCallback(ItemClickCallback: OnItemClickCallback) {
-        this.itemClickCallback = ItemClickCallback
-    }
-
-    interface OnItemClickCallback {
-        fun itemClicked(story: StoryItem)
-    }
-
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryItem>() {
             override fun areItemsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(
-                oldItem: StoryItem,
-                newItem: StoryItem
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 }

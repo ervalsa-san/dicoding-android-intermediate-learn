@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ervalsa.storyapp.ui.main.MainActivity
 import com.ervalsa.storyapp.ViewModelFactory
 import com.ervalsa.storyapp.data.entity.UserEntity
-import com.ervalsa.storyapp.data.local.UserPreference
+import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.data.remote.response.auth.LoginResponse
 import com.ervalsa.storyapp.data.remote.retrofit.ApiConfig
 import com.ervalsa.storyapp.databinding.ActivityLoginBinding
@@ -132,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
             this,
             ViewModelFactory(
                 UserPreference
-                    .getInstance(dataStore)))[LoginViewModel::class.java]
+                    .getInstance(dataStore))
+        )[LoginViewModel::class.java]
     }
 }

@@ -1,4 +1,4 @@
-package com.ervalsa.storyapp.data.local
+package com.ervalsa.storyapp.data.local.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

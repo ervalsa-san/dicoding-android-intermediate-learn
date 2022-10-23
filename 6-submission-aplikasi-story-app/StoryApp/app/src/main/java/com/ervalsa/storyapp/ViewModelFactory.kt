@@ -2,12 +2,11 @@ package com.ervalsa.storyapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ervalsa.storyapp.data.StoryRepository
-import com.ervalsa.storyapp.data.local.UserPreference
+import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.ui.login.LoginViewModel
 import com.ervalsa.storyapp.ui.main.MainViewModel
 
-class ViewModelFactory (
+class ViewModelFactory(
     private val preference: UserPreference
 ) : ViewModelProvider.NewInstanceFactory() {
 

@@ -1,18 +1,16 @@
 package com.ervalsa.storyapp.ui.splash
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.ervalsa.storyapp.ViewModelFactory
-import com.ervalsa.storyapp.data.local.UserPreference
+import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.databinding.ActivitySplashBinding
 import com.ervalsa.storyapp.ui.login.LoginActivity
 import com.ervalsa.storyapp.ui.login.LoginViewModel
