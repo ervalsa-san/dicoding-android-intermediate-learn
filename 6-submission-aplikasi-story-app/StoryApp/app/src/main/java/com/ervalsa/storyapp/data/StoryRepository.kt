@@ -1,5 +1,8 @@
 package com.ervalsa.storyapp.data
 
+import android.content.ContentValues.TAG
+import android.nfc.Tag
+import android.util.Log
 import androidx.datastore.dataStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -18,24 +21,11 @@ class StoryRepository private constructor(
     private val storyDao: StoryDao,
     private val appExecutors: AppExecutors
 ) {
-    companion object {
-        @Volatile
-        private var instance: StoryRepository? = null
-        fun getInstance(
-            apiService: ApiService,
-            storyDao: StoryDao,
-            appExecutors: AppExecutors
-        ) : StoryRepository =
-            instance ?: synchronized(this) {
-                instance ?: StoryRepository(apiService, storyDao, appExecutors)
-            }.also { instance = it }
-    }
-
     private val result = MediatorLiveData<Result<List<StoryItem>>>()
 
-    fun getAllStories(): LiveData<Result<List<StoryItem>>> {
+    fun getAllStories(token: String): LiveData<Result<List<StoryItem>>> {
         result.value = Result.Loading
-        val client = apiService.getAllStory(BuildConfig.BASE_URL, null, null)
+        val client = apiService.getAllStory(token, null, null)
         client.enqueue(object : Callback<StoryResponse> {
             override fun onResponse(
                 call: Call<StoryResponse>,
@@ -60,12 +50,27 @@ class StoryRepository private constructor(
                         storyDao.insertStories(storiesList)
                     }
                 }
+                Log.e(TAG, response.message())
             }
 
             override fun onFailure(call: Call<StoryResponse>, t: Throwable) {
                 result.value = Result.Error(t.message.toString())
+                t.message?.let { Log.e(TAG, it) }
             }
         })
         return result
+    }
+
+    companion object {
+        @Volatile
+        private var instance: StoryRepository? = null
+        fun getInstance(
+            apiService: ApiService,
+            storyDao: StoryDao,
+            appExecutors: AppExecutors
+        ) : StoryRepository =
+            instance ?: synchronized(this) {
+                instance ?: StoryRepository(apiService, storyDao, appExecutors)
+            }.also { instance = it }
     }
 }

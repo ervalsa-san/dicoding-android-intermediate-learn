@@ -38,43 +38,47 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewModel()
-        setDataUser()
+        val factory: StoryViewModelFactory = StoryViewModelFactory.getInstance(this)
+        val storyViewModel: StoryViewModel by viewModels {
+            factory
+        }
+
+        val storyAdapter = ListStoryAdapter()
+
+        binding.rvListStory.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = storyAdapter
+        }
+
+        mainViewModel.getUser().observe(this) { user ->
+            if (user.isLogin) {
+                binding.tvTitle.text = "Selamat datang,\n${user.name}"
+                storyViewModel.getAllStories("Bearer ${user.token}").observe(this) { result ->
+                    when(result) {
+                        is Result.Loading -> {
+                            showLoading(true)
+                        }
+
+                        is Result.Success -> {
+                            showLoading(false)
+                            val storyData = result.data
+                            storyAdapter.submitList(storyData)
+                        }
+
+                        is Result.Error -> {
+                            showLoading(false)
+                        }
+                    }
+                }
+            }
+        }
 
         binding.btnLogout.setOnClickListener {
             mainViewModel.logout()
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }
-    }
-
-    private fun setToken(token: String) {
-        binding.apply {
-            showLoading(true)
-            mainViewModel.setListStory(token, null, null)
-        }
-    }
-
-    private fun setDataUser() {
-        mainViewModel.getUser().observe(this) { user->
-            if (user.isLogin) {
-                showLoading(true)
-                binding.tvTitle.text = "Selamat datang,\n${user.name}"
-                val token = "Bearer ${user.token}"
-                setToken(token)
-                mainViewModel.getAllStories().observe(this) { stories ->
-                    if (stories != null) {
-                        showLoading(false)
-                        with(binding.rvListStory) {
-                            val storyAdapter = ListStoryAdapter()
-                            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-                            adapter = storyAdapter
-                            setHasFixedSize(true)
-                        }
-                    }
-                }
-                Log.e(TAG, user.token)
-            }
         }
     }
 

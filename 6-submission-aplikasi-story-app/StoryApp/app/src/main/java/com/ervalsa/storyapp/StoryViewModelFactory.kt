@@ -11,16 +11,6 @@ class StoryViewModelFactory(
     private val storyRepository: StoryRepository
 ) : ViewModelProvider.NewInstanceFactory(){
 
-    companion object {
-        @Volatile
-        private var instance: StoryViewModelFactory? = null
-
-        fun getInstance(context: Context): StoryViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: StoryViewModelFactory(Injection.provideRepository(context))
-            }.also { instance = it }
-    }
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
@@ -29,5 +19,15 @@ class StoryViewModelFactory(
             }
             else -> throw IllegalArgumentException("Unkown ViewModel class: " + modelClass.name)
         }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: StoryViewModelFactory? = null
+
+        fun getInstance(context: Context): StoryViewModelFactory =
+            instance ?: synchronized(this) {
+                instance ?: StoryViewModelFactory(Injection.provideRepository(context))
+            }.also { instance = it }
     }
 }
