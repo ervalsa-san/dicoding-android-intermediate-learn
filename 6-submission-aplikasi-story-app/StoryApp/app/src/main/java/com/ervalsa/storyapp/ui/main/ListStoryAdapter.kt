@@ -1,5 +1,6 @@
 package com.ervalsa.storyapp.ui.main
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -40,14 +41,15 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryItem>() {
-            override fun areItemsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
-                return oldItem.id == newItem.id
-            }
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<StoryItem> =
+            object : DiffUtil.ItemCallback<StoryItem>() {
+                override fun areItemsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-            override fun areContentsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
-                return oldItem == newItem
+                override fun areContentsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+                    return oldItem == newItem
+                }
             }
-        }
     }
 }
