@@ -58,6 +58,11 @@ class StoryRepository private constructor(
                 t.message?.let { Log.e(TAG, it) }
             }
         })
+
+        val localData = storyDao.getStories()
+        result.addSource(localData) { storyData: List<StoryItem> ->
+            result.value = Result.Success(storyData)
+        }
         return result
     }
 

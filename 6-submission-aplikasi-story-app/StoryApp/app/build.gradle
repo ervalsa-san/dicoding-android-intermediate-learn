@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
@@ -73,7 +73,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
 
     // Room
-    def room_version = '2.4.3'
+    def room_version = '2.5.0-alpha02'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 

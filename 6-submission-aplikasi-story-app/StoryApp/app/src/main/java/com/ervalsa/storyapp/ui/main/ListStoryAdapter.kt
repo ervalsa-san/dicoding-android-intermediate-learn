@@ -1,6 +1,5 @@
 package com.ervalsa.storyapp.ui.main
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ervalsa.storyapp.data.remote.response.story.StoryItem
+import com.ervalsa.storyapp.ui.main.ListStoryAdapter.ListViewHolder
 import com.ervalsa.storyapp.databinding.ItemStoryBinding
 
-class ListStoryAdapter : ListAdapter<StoryItem, ListStoryAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val listStoryBinding = ItemStoryBinding.inflate(

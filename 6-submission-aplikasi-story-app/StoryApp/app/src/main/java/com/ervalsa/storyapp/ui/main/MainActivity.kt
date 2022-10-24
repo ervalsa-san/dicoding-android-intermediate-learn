@@ -45,12 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         val storyAdapter = ListStoryAdapter()
 
-        binding.rvListStory.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = storyAdapter
-        }
-
         mainViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
                 binding.tvTitle.text = "Selamat datang,\n${user.name}"
@@ -72,6 +66,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        binding.rvListStory.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = storyAdapter
         }
 
         binding.btnLogout.setOnClickListener {
