@@ -19,6 +19,7 @@ import com.ervalsa.storyapp.data.Result
 import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.databinding.ActivityMainBinding
 import com.ervalsa.storyapp.ui.login.LoginActivity
+import com.ervalsa.storyapp.ui.story.add.AddStoryActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.btnAddStory.setOnClickListener {
+            val intent = Intent(this@MainActivity, AddStoryActivity::class.java)
+            startActivity(intent)
         }
     }
 

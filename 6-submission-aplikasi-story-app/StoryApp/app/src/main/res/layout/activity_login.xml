@@ -49,11 +49,11 @@
                 android:id="@+id/tv_title_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alamat Email"
-                android:textSize="16sp"
-                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:layout_marginBottom="4dp"/>
+                android:text="Alamat Email"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_input_email"
@@ -67,34 +67,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tv_title_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kata Sandi"
-                android:textSize="16sp"
-                android:textColor="@color/dark_blue"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:layout_marginBottom="4dp"/>
+                android:text="Kata Sandi"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_input_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
                 app:endIconMode="password_toggle"
-                app:endIconTint="@color/purple"
-                android:layout_marginBottom="32dp">
+                app:endIconTint="@color/purple">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -102,22 +102,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:textAllCaps="false"
-                android:text="Masuk"
-                android:background="@drawable/bg_button"
-                android:textSize="16sp"
+                android:background="@drawable/bg_button_primary"
                 android:fontFamily="@font/poppins_semibold"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:text="Masuk"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btn_register"
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_secondary"
                 android:text="Daftar Akun"
-                android:textColor="@color/purple"
-                android:backgroundTint="@color/transparent"
-                android:textAllCaps="false" />
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                app:backgroundTint="@color/light_gray"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
