@@ -14,5 +14,9 @@ class AddStoryActivity : AppCompatActivity() {
 
         binding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        actionBar?.title = ""
+        actionBar?.elevation = 0f
+        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

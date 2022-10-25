@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         setupViewModel()
         val factory: StoryViewModelFactory = StoryViewModelFactory.getInstance(this)
@@ -77,6 +80,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLogout.setOnClickListener {
             mainViewModel.logout()
+            AlertDialog.Builder(this@MainActivity).apply {
+                setTitle("Ingin keluar aplikasi?")
+                setMessage("Apakah Anda yakin ingin mengeluarkan akun dari aplikasi?")
+                setNegativeButton("Tidak jadi") {_, _ ->
+                    finish()
+                }
+                setPositiveButton("Yakin") { _, _ ->
+                    finish()
+                }
+                create()
+                show()
+            }
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -101,5 +116,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

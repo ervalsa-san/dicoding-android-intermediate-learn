@@ -47,6 +47,7 @@ class StoryRepository private constructor(
                             )
                             storiesList.add(stories)
                         }
+                        storyDao.deleteAll()
                         storyDao.insertStories(storiesList)
                     }
                 }

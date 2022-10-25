@@ -76,7 +76,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/purple">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_input_nama"
@@ -104,7 +106,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="@color/purple">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_input_email"
@@ -132,11 +136,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/purple"
-                    android:layout_marginBottom="32dp">
+                    android:layout_marginBottom="32dp"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/purple">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.ervalsa.storyapp.views.CustomPasswordEditText
                         android:id="@+id/edt_input_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
