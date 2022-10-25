@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.ervalsa.storyapp.R
 import com.ervalsa.storyapp.data.remote.response.story.StoryItem
 import com.ervalsa.storyapp.ui.main.ListStoryAdapter.ListViewHolder
 import com.ervalsa.storyapp.databinding.ItemStoryBinding
 import com.ervalsa.storyapp.ui.detail.DetailActivity
+import com.ervalsa.storyapp.utils.withDateFormat
 
 class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
 
@@ -47,6 +49,7 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
         fun bind(story: StoryItem) {
             binding.tvName.text = story.name
             binding.tvDescription.text = story.description
+            binding.tvCreateAt.withDateFormat(story.createdAt)
             Glide.with(itemView.context)
                 .load(story.photoUrl)
                 .apply(RequestOptions())

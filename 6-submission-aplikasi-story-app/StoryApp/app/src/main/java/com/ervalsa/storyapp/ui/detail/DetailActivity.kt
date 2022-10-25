@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.ervalsa.storyapp.R
 import com.ervalsa.storyapp.data.remote.response.story.StoryItem
 import com.ervalsa.storyapp.databinding.ActivityDetailBinding
+import com.ervalsa.storyapp.utils.withDateFormat
 
 class DetailActivity : AppCompatActivity() {
 
@@ -34,6 +35,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun populateStory() {
         binding.tvTitle.text = story?.name
+        binding.tvDescription.text = story?.description
+        story?.let { binding.tvCreateAt.withDateFormat(it.createdAt) }
         Glide.with(this)
             .load(story?.photoUrl)
             .placeholder(R.drawable.ic_place_holder)

@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
@@ -20,7 +18,7 @@ import com.ervalsa.storyapp.data.Result
 import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.databinding.ActivityMainBinding
 import com.ervalsa.storyapp.ui.login.LoginActivity
-import com.ervalsa.storyapp.ui.story.add.AddStoryActivity
+import com.ervalsa.storyapp.ui.story.AddStoryActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -79,22 +77,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogout.setOnClickListener {
-            mainViewModel.logout()
             AlertDialog.Builder(this@MainActivity).apply {
                 setTitle("Ingin keluar aplikasi?")
                 setMessage("Apakah Anda yakin ingin mengeluarkan akun dari aplikasi?")
                 setNegativeButton("Tidak jadi") {_, _ ->
-                    finish()
+
                 }
                 setPositiveButton("Yakin") { _, _ ->
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    mainViewModel.logout()
                     finish()
                 }
                 create()
                 show()
             }
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         binding.btnAddStory.setOnClickListener {

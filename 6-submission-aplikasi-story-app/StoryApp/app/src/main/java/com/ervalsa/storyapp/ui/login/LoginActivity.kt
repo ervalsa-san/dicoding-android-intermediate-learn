@@ -59,11 +59,11 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.edtInputPassword.text.toString()
         when {
             email.isEmpty() -> {
-                binding.edtInputEmail.error = "Email tidak boleh kosong"
+//                binding.edtInputEmail.error = "Email tidak boleh kosong"
             }
 
             password.isEmpty() -> {
-                binding.edtInputPassword.error = "Password tidak boleh kosong"
+//                binding.edtInputPassword.error = "Password tidak boleh kosong"
             }
             else -> {
                 loginAuthentication()

@@ -81,7 +81,7 @@
                     app:startIconDrawable="@drawable/ic_email"
                     app:startIconTint="@color/purple">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.ervalsa.storyapp.views.CustomEmailEditText
                         android:id="@+id/edt_input_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
