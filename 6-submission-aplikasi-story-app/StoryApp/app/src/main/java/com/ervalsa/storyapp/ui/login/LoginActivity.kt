@@ -135,4 +135,8 @@ class LoginActivity : AppCompatActivity() {
                     .getInstance(dataStore))
         )[LoginViewModel::class.java]
     }
+
+    private fun animation() {
+
+    }
 }
