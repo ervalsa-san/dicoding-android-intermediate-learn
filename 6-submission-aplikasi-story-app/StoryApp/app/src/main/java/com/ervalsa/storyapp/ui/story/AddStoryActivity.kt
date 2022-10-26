@@ -1,7 +1,6 @@
 package com.ervalsa.storyapp.ui.story
 
 import android.Manifest
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
@@ -9,11 +8,9 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,16 +18,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.ervalsa.storyapp.StoryViewModelFactory
 import com.ervalsa.storyapp.ViewModelFactory
-import com.ervalsa.storyapp.data.Result
 import com.ervalsa.storyapp.data.local.datastore.UserPreference
 import com.ervalsa.storyapp.data.remote.response.story.FileUploadResponse
 import com.ervalsa.storyapp.data.remote.retrofit.ApiConfig
 import com.ervalsa.storyapp.databinding.ActivityAddStoryBinding
 import com.ervalsa.storyapp.ui.main.MainActivity
 import com.ervalsa.storyapp.ui.main.MainViewModel
-import com.ervalsa.storyapp.ui.main.StoryViewModel
 import com.ervalsa.storyapp.utils.reduceFileImage
 import com.ervalsa.storyapp.utils.rotateBitmap
 import com.ervalsa.storyapp.utils.uriToFile
