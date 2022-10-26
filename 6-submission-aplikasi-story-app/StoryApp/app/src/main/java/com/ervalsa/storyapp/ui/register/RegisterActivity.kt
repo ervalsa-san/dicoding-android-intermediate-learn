@@ -1,5 +1,7 @@
 package com.ervalsa.storyapp.ui.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +31,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        animation()
 
         binding.btnRegister.setOnClickListener {
             setupRegister()
@@ -114,6 +118,37 @@ class RegisterActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun animation() {
+        val title = ObjectAnimator.ofFloat(binding.textView, View.ALPHA, 1f).setDuration(500)
+        val cardView = ObjectAnimator.ofFloat(binding.cardView, View.ALPHA, 1f).setDuration(500)
+        val illustration = ObjectAnimator.ofFloat(binding.imgIllustration, View.ALPHA, 1f).setDuration(500)
+        val tvTitleName = ObjectAnimator.ofFloat(binding.tvTitleName, View.ALPHA, 1f).setDuration(500)
+        val layoutName = ObjectAnimator.ofFloat(binding.layoutInputNama, View.ALPHA, 1f).setDuration(500)
+        val tvTitleEmail = ObjectAnimator.ofFloat(binding.tvTitleEmail, View.ALPHA, 1f).setDuration(500)
+        val layoutEmail = ObjectAnimator.ofFloat(binding.layoutInputEmail, View.ALPHA, 1f).setDuration(500)
+        val tvTitlePassword = ObjectAnimator.ofFloat(binding.tvTitlePassword, View.ALPHA, 1f).setDuration(500)
+        val layoutPassword = ObjectAnimator.ofFloat(binding.layoutInputPassword, View.ALPHA, 1f).setDuration(500)
+        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
+        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(500)
+
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                cardView,
+                illustration,
+                tvTitleName,
+                layoutName,
+                tvTitleEmail,
+                layoutEmail,
+                tvTitlePassword,
+                layoutPassword,
+                btnRegister,
+                btnLogin
+            )
+            start()
         }
     }
 }

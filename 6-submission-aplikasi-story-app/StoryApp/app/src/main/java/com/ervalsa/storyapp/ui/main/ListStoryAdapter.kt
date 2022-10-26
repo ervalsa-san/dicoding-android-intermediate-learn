@@ -1,8 +1,13 @@
 package com.ervalsa.storyapp.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +34,11 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
         val stories = getItem(position)
         holder.bind(stories)
 
+        var imgPhoto: ImageView = holder.itemView.findViewById(R.id.img_photo_story)
+        var tvName: TextView = holder.itemView.findViewById(R.id.tv_name)
+        var tvDate: TextView = holder.itemView.findViewById(R.id.tv_create_at)
+        var tvDescription: TextView = holder.itemView.findViewById(R.id.tv_description)
+
         holder.itemView.setOnClickListener {
             val data = StoryItem(
                 stories.id,
@@ -42,7 +52,15 @@ class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
 
             val intent = Intent(it.context, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, data)
-            it.context.startActivity(intent)
+            val optionCompat: ActivityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    holder.itemView.context as Activity,
+                    Pair(imgPhoto, "image_story"),
+                    Pair(tvName, "name"),
+                    Pair(tvDate, "time"),
+                    Pair(tvDescription, "description")
+                )
+            it.context.startActivity(intent, optionCompat.toBundle())
         }
     }
 

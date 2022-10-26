@@ -22,6 +22,7 @@
             android:text="Masuk &amp;\nBuat Cerita Menarik"
             android:textColor="@color/dark_blue"
             android:textSize="20sp"
+            android:alpha="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,6 +39,7 @@
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="0dp"
+            android:alpha="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +57,7 @@
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
+                    android:alpha="0"
                     android:src="@drawable/illustration_1" />
 
                 <TextView
@@ -67,7 +70,8 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Alamat Email"
                     android:textColor="@color/dark_blue"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:alpha="0"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_input_email"
@@ -78,6 +82,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:alpha="0"
                     app:startIconDrawable="@drawable/ic_email"
                     app:startIconTint="@color/purple">
 
@@ -97,6 +102,7 @@
                     android:layout_marginBottom="4dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Kata Sandi"
+                    android:alpha="0"
                     android:textColor="@color/dark_blue"
                     android:textSize="16sp" />
 
@@ -108,6 +114,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="32dp"
+                    android:alpha="0"
                     app:startIconDrawable="@drawable/ic_lock"
                     app:startIconTint="@color/purple">
 
@@ -126,6 +133,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:alpha="0"
                     android:background="@drawable/bg_button_primary"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Masuk"
@@ -138,6 +146,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:alpha="0"
                     android:background="@drawable/bg_button_secondary"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Daftar Akun"

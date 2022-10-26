@@ -141,9 +141,10 @@ class AddStoryActivity : AppCompatActivity() {
                             }
 
                             override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
+                                showLoading(false)
                                 Toast.makeText(
                                     this@AddStoryActivity,
-                                    "Gagal instance REtrofit",
+                                    "Gagal instance Retrofit",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

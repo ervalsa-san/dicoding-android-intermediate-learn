@@ -1,5 +1,7 @@
 package com.ervalsa.storyapp.ui.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setupViewModel()
+        animation()
 
         binding.btnLogin.setOnClickListener {
             setupLogin()
@@ -139,6 +142,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun animation() {
+        val title = ObjectAnimator.ofFloat(binding.textView, View.ALPHA, 1f).setDuration(500)
+        val cardView = ObjectAnimator.ofFloat(binding.cardView, View.ALPHA, 1f).setDuration(500)
+        val illustration = ObjectAnimator.ofFloat(binding.imgIllustration, View.ALPHA, 1f).setDuration(500)
+        val tvTitleEmail = ObjectAnimator.ofFloat(binding.tvTitleEmail, View.ALPHA, 1f).setDuration(500)
+        val layoutEmail = ObjectAnimator.ofFloat(binding.layoutInputEmail, View.ALPHA, 1f).setDuration(500)
+        val tvTitlePassword = ObjectAnimator.ofFloat(binding.tvTitlePassword, View.ALPHA, 1f).setDuration(500)
+        val layoutPassword = ObjectAnimator.ofFloat(binding.layoutInputPassword, View.ALPHA, 1f).setDuration(500)
+        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
+        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(500)
 
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                cardView,
+                illustration,
+                tvTitleEmail,
+                layoutEmail,
+                tvTitlePassword,
+                layoutPassword,
+                btnLogin,
+                btnRegister
+            )
+            start()
+        }
     }
 }
