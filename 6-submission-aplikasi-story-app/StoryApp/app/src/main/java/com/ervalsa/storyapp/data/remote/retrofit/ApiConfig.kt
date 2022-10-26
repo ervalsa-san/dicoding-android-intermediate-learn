@@ -11,18 +11,15 @@ class ApiConfig {
     companion object {
         fun getApiService(): ApiService {
             val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(
-                    HttpLoggingInterceptor.Level.BODY
-                )
-//                if (DEBUG) {
-//                    HttpLoggingInterceptor().setLevel(
-//                        HttpLoggingInterceptor.Level.BODY
-//                    )
-//                } else {
-//                    HttpLoggingInterceptor().setLevel(
-//                        HttpLoggingInterceptor.Level.NONE
-//                    )
-//                }
+                if (DEBUG) {
+                    HttpLoggingInterceptor().setLevel(
+                        HttpLoggingInterceptor.Level.BODY
+                    )
+                } else {
+                    HttpLoggingInterceptor().setLevel(
+                        HttpLoggingInterceptor.Level.NONE
+                    )
+                }
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)

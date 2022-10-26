@@ -8,13 +8,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.ervalsa.storyapp.BuildConfig
 import com.ervalsa.storyapp.data.local.room.StoryDao
+import com.ervalsa.storyapp.data.remote.response.story.FileUploadResponse
 import com.ervalsa.storyapp.data.remote.response.story.StoryItem
 import com.ervalsa.storyapp.data.remote.response.story.StoryResponse
 import com.ervalsa.storyapp.data.remote.retrofit.ApiService
 import com.ervalsa.storyapp.utils.AppExecutors
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class StoryRepository private constructor(
     private val apiService: ApiService,
@@ -65,6 +69,38 @@ class StoryRepository private constructor(
             result.value = Result.Success(storyData)
         }
         return result
+    }
+
+    fun addStory(
+        token: String,
+        imageFile: MultipartBody.Part,
+        description: RequestBody
+    ) {
+
+        result.value = Result.Loading
+        val client = apiService.addStory(token, imageFile, description)
+        client.enqueue(object : Callback<FileUploadResponse> {
+            override fun onResponse(
+                call: Call<FileUploadResponse>,
+                response: Response<FileUploadResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        if (!responseBody.error) {
+                            Log.e(TAG, response.message())
+                        }
+                    } else {
+                        Log.e(TAG, response.message())
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
+                t.message?.let { Log.e(TAG, it) }
+            }
+
+        })
     }
 
     companion object {

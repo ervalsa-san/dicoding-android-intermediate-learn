@@ -13,6 +13,7 @@ import com.ervalsa.storyapp.data.remote.response.story.StoryItem
 import com.ervalsa.storyapp.ui.main.ListStoryAdapter.ListViewHolder
 import com.ervalsa.storyapp.databinding.ItemStoryBinding
 import com.ervalsa.storyapp.ui.detail.DetailActivity
+import com.ervalsa.storyapp.ui.story.AddStoryActivity
 import com.ervalsa.storyapp.utils.withDateFormat
 
 class ListStoryAdapter : ListAdapter<StoryItem, ListViewHolder>(DIFF_CALLBACK) {
