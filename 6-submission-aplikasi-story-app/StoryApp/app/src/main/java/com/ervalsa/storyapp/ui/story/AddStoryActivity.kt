@@ -82,76 +82,85 @@ class AddStoryActivity : AppCompatActivity() {
         binding.btnGallery.setOnClickListener {
             val intent = Intent()
             intent.action = ACTION_GET_CONTENT
-            intent.type = "image/"
+            intent.type = "image/*"
             val chooser = Intent.createChooser(intent, "Pilih gambar")
             launcherIntentGallery.launch(chooser)
         }
 
         binding.btnPostStory.setOnClickListener {
-            if (getFile != null) {
-                val file = reduceFileImage(getFile as File)
-                val description = binding.edtDescription.text.toString().toRequestBody("text/plain".toMediaType())
-                val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                    "photo",
-                    file.name,
-                    requestImageFile
-                )
+            when {
+                binding.edtDescription.text.isEmpty() -> {
+                    binding.edtDescription.error = "Masukkan deskripsi"
+                }
 
-                mainViewModel.getUser().observe(this) { user ->
-                    if (user.isLogin) {
-                        val client = ApiConfig.getApiService().addStory(
-                            "Bearer ${user.token}",
-                            imageMultipart,
-                            description
+                else -> {
+                    if (getFile != null) {
+                        val file = reduceFileImage(getFile as File)
+                        val description = binding.edtDescription.text.toString().toRequestBody("text/plain".toMediaType())
+                        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "photo",
+                            file.name,
+                            requestImageFile
                         )
-                        showLoading(true)
-                        client.enqueue(object : Callback<FileUploadResponse> {
-                            override fun onResponse(
-                                call: Call<FileUploadResponse>,
-                                response: Response<FileUploadResponse>
-                            ) {
-                                if (response.isSuccessful) {
-                                    val responseBody = response.body()
-                                    if (responseBody != null && !responseBody.error) {
-                                        showLoading(false)
-                                        Toast.makeText(
-                                            this@AddStoryActivity,
-                                            responseBody.message,
-                                            Toast.LENGTH_SHORT
-                                        ).show()
 
-                                        val intent = Intent(this@AddStoryActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                    } else {
+                        mainViewModel.getUser().observe(this) { user ->
+                            if (user.isLogin) {
+                                val client = ApiConfig.getApiService().addStory(
+                                    "Bearer ${user.token}",
+                                    imageMultipart,
+                                    description
+                                )
+                                showLoading(true)
+                                client.enqueue(object : Callback<FileUploadResponse> {
+                                    override fun onResponse(
+                                        call: Call<FileUploadResponse>,
+                                        response: Response<FileUploadResponse>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            val responseBody = response.body()
+                                            if (responseBody != null && !responseBody.error) {
+                                                showLoading(false)
+                                                Toast.makeText(
+                                                    this@AddStoryActivity,
+                                                    responseBody.message,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+
+                                                val intent = Intent(this@AddStoryActivity, MainActivity::class.java)
+                                                startActivity(intent)
+                                                finish()
+                                            } else {
+                                                showLoading(false)
+                                                Toast.makeText(
+                                                    this@AddStoryActivity,
+                                                    response.message(),
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
                                         showLoading(false)
                                         Toast.makeText(
                                             this@AddStoryActivity,
-                                            response.message(),
+                                            "Gagal instance Retrofit",
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
-                                }
-                            }
 
-                            override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
-                                showLoading(false)
-                                Toast.makeText(
-                                    this@AddStoryActivity,
-                                    "Gagal instance Retrofit",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                })
                             }
-
-                        })
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@AddStoryActivity,
+                            "Silahkan masukkan gambar terlebih dahulu",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-            } else {
-                Toast.makeText(
-                    this@AddStoryActivity,
-                    "Silahkan masukkan gambar terlebih dahulu",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
     }

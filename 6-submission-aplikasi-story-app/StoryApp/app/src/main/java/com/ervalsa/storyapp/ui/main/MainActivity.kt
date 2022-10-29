@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+            } else {
+                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 
