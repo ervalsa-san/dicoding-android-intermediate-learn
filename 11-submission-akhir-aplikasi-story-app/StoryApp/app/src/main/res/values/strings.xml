@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="lorem_ipsum">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</string>
+    <string name="_date" translatable="false">2022-3-23</string>
+</resources>
